@@ -13,7 +13,6 @@ namespace ft
 		typedef typename Iter::pointer				pointer;
 		typedef typename Iter::reference			reference;
 		typedef typename Iter::iterator_category	iterator_category;
-
 	};
 
 	template < class T >
@@ -24,7 +23,6 @@ namespace ft
 		typedef T*									pointer;
 		typedef T&									reference;
 		typedef std::random_access_iterator_tag		iterator_category;
-
 	};
 
 	template < class T >
@@ -35,7 +33,6 @@ namespace ft
 		typedef const T*							pointer;
 		typedef const T&							reference;
 		typedef std::random_access_iterator_tag		iterator_category;
-
 	};
 }
 
