@@ -13,19 +13,18 @@ public:
 
 int main()
 {
-	std::cout << "Making vector" << std::endl;
-	#ifdef DEBUG
-	std::vector<Test> v;
-	#else
-	ft::vector<Test> v;
-	#endif
-	v.push_back(Test());
-	v.pop_back();
-	v.push_back(Test());
-	v.pop_back();
-	v.push_back(Test());
-	v.push_back(Test());
-	v.pop_back();
+	ft::vector<std::string> v;
+	v.push_back("Zero");
+	v.push_back("One");
+	v.push_back("Two");
+	v.push_back("Three");
+	v.push_back("Four");
+	v.push_back("Five");
+	std::cout << v.at(3) << std::endl;
+	std::cout << v.front() << std::endl;
+	std::cout << v.back() << std::endl;
+	std::cout << v[3] << std::endl;
+	std::cout << v[5] << std::endl;
 	v.clear();	
 	return 0;
 }

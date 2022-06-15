@@ -30,13 +30,13 @@ namespace ft
 		}
 
 		// Constructs an empty container with the given allocator alloc.
-		explicit vector(const Allocator &alloc)
+		explicit vector( const Allocator &alloc )
 			: _alloc(alloc), _data(NULL), _size(0), _capacity(0)
 		{
 		}
 
 		// Constructs the container with count copies of elements with value value.
-		explicit vector(size_type count, const T &value = T(), const Allocator &alloc = Allocator())
+		explicit vector( size_type count, const T &value = T(), const Allocator &alloc = Allocator() )
 			: _alloc(alloc), _data(NULL), _size(count), _capacity(count)
 		{
 			_data = _alloc.allocate(count);
@@ -46,7 +46,7 @@ namespace ft
 
 		// Constructs the container with the contents of the range [first, last].
 		template < typename InputIt >
-		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator())
+		vector( InputIt first, InputIt last, const Allocator &alloc = Allocator() )
 			: _alloc(alloc), _data(NULL)
 		{
 			_size = std::distance(first, last);
@@ -65,6 +65,63 @@ namespace ft
 			for (size_type i = 0; i < _size; i++)
 				_alloc.destroy(&_data[i]);
 			_alloc.deallocate(_data, _size);
+		}
+		// ***
+		// Element access
+		// ***
+
+		reference at( size_type pos )
+		{
+			if (!(pos < _size))
+				throw std::exception();
+			return _data[pos];
+		}
+
+		const_reference at( size_type pos ) const
+		{
+			if (!(pos < _size))
+				throw std::exception();
+			return _data[pos];
+		}
+
+		reference operator[]( size_type pos )
+		{
+			return _data[pos];
+		}
+
+		const_reference operator[]( size_type pos ) const
+		{
+			return _data[pos];
+		}
+
+		reference front()
+		{
+			return *_data;
+		}
+
+		const_reference front() const
+		{
+			return *_data;
+		}
+
+		reference back()
+		{
+			return _data[_size - 1];
+		}
+
+		const_reference back() const
+		{
+			return *_data[_size - 1];
+		}
+
+		T* data()
+		{
+			return _data;
+		}
+
+		const T* data() const
+		{
+			return _data;
 		}
 
 		// ***
@@ -86,7 +143,7 @@ namespace ft
 			return _alloc.max_size();
 		}
 
-		void reserve(size_type new_cap)
+		void reserve( size_type new_cap )
 		{
 			pointer tmp;
 
@@ -150,6 +207,22 @@ namespace ft
 			_alloc.destroy(&_data[_size - 1]);
 			_size--;
 		}
+
+		/*
+		void resize( size_type count, value_type value = value_type() )
+		{
+			if (count < _size)
+			{
+				for (size_type i = count; i < _size; i++)
+					_alloc.destroy(&_data[i]);
+				_size = count;
+			}
+			else if (count > _size)
+			{
+				// Waiting for iterator implementation to use insert( iterator pos, size_type count, const T& value );
+			}
+		}
+		*/
 
 	private:
 		allocator_type _alloc;
