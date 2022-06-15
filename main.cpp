@@ -4,22 +4,29 @@
 #include <utility>
 #include "pair.hpp"
 
+class Test
+{
+public:
+	Test() { std::cout << this << " test constructed" << std::endl; }
+	~Test() { std::cout << this << " test destructed" << std::endl; }
+};
+
 int main()
 {
-	std::vector<std::string> v;
-
-	v.push_back("test");
-	std::cout << v.size() << ' ' << v.capacity() << std::endl;
-	v.push_back("best");
-	std::cout << v.size() << ' ' << v.capacity() << std::endl;
-	std::vector<std::string>::iterator it = v.begin();
-	std::cout << "it.begin : " << *it << std::endl;
-	v.push_back("rest");
-	std::cout << v.size() << ' ' << v.capacity() << std::endl;
-	it = v.begin();
-	std::cout << "it.begin : " << *it << std::endl;
-	
-
+	std::cout << "Making vector" << std::endl;
+	#ifdef DEBUG
+	std::vector<Test> v;
+	#else
+	ft::vector<Test> v;
+	#endif
+	v.push_back(Test());
+	v.pop_back();
+	v.push_back(Test());
+	v.pop_back();
+	v.push_back(Test());
+	v.push_back(Test());
+	v.pop_back();
+	v.clear();	
 	return 0;
 }
 

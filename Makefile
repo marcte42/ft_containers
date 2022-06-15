@@ -15,6 +15,9 @@ $(NAME): $(OBJS)
 
 all: $(NAME)
 
+debug: $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -D DEBUG=1 -o $(NAME)
+
 clean :
 		rm -rf $(OBJS)
 

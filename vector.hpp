@@ -127,6 +127,13 @@ namespace ft
 		// ***
 		// Modifiers
 		// ***
+		void clear()
+		{
+			for (size_type i = 0; i < _size; i++)
+				_alloc.destroy(&_data[i]);
+			_size = 0;
+		}
+
 		void push_back( const T& value )
 		{
 			if (_size == _capacity)
@@ -136,6 +143,12 @@ namespace ft
 			}
 			_alloc.construct(_data + _size, value);
 			_size++;
+		}
+
+		void pop_back()
+		{
+			_alloc.destroy(&_data[_size - 1]);
+			_size--;
 		}
 
 	private:
