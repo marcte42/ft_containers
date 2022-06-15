@@ -18,9 +18,9 @@ namespace ft
 		typedef typename allocator_type::const_reference 	const_reference;
 		typedef std::size_t									size_type;
 		typedef std::ptrdiff_t								difference_type;
-		// typedef /* implementation-defined */				iterator;
-		// typedef /* implementation-defined */				const_iterator;
-		// typedef ft::reverse_iterator<iterator>			reverse_iterator;
+		// typedef ft::iterator<iterator>						iterator;
+		// typedef ft::iterator<const_iterator>				const_iterator;
+		// typedef ft::reverse_iterator<iterator>				reverse_iterator;
 		// typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
 		// Default constructor. Constructs an empty container with a default-constructed allocator.
@@ -122,6 +122,20 @@ namespace ft
 		size_type capacity() const
 		{
 			return _capacity;
+		}
+
+		// ***
+		// Modifiers
+		// ***
+		void push_back( const T& value )
+		{
+			if (_size == _capacity)
+			{
+				int new_capacity = (_size == 0) ? 1 : _size * 2;
+				this->reserve(new_capacity);
+			}
+			_alloc.construct(_data + _size, value);
+			_size++;
 		}
 
 	private:
