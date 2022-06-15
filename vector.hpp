@@ -66,6 +66,12 @@ namespace ft
 				_alloc.destroy(&_data[i]);
 			_alloc.deallocate(_data, _size);
 		}
+
+		allocator_type get_allocator() const
+		{
+			return _alloc;
+		}
+
 		// ***
 		// Element access
 		// ***
