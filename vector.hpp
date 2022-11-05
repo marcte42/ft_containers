@@ -6,18 +6,18 @@
 
 namespace ft
 {
-	template < typename T, typename Allocator = std::allocator<T> >
+	template <typename T, typename Allocator = std::allocator<T> >
 	class vector
 	{
 	public:
-		typedef T											value_type;
-		typedef Allocator 									allocator_type;
-		typedef typename allocator_type::pointer 			pointer;
-		typedef typename allocator_type::const_pointer 		const_pointer;
-		typedef typename allocator_type::reference 			reference;
-		typedef typename allocator_type::const_reference 	const_reference;
-		typedef std::size_t									size_type;
-		typedef std::ptrdiff_t								difference_type;
+		typedef T value_type;
+		typedef Allocator allocator_type;
+		typedef typename allocator_type::pointer pointer;
+		typedef typename allocator_type::const_pointer const_pointer;
+		typedef typename allocator_type::reference reference;
+		typedef typename allocator_type::const_reference const_reference;
+		typedef std::size_t size_type;
+		typedef std::ptrdiff_t difference_type;
 		// typedef ft::iterator<iterator>						iterator;
 		// typedef ft::iterator<const_iterator>				const_iterator;
 		// typedef ft::reverse_iterator<iterator>				reverse_iterator;
@@ -30,13 +30,13 @@ namespace ft
 		}
 
 		// Constructs an empty container with the given allocator alloc.
-		explicit vector( const Allocator &alloc )
+		explicit vector(const Allocator &alloc)
 			: _alloc(alloc), _data(NULL), _size(0), _capacity(0)
 		{
 		}
 
 		// Constructs the container with count copies of elements with value value.
-		explicit vector( size_type count, const T &value = T(), const Allocator &alloc = Allocator() )
+		explicit vector(size_type count, const T &value = T(), const Allocator &alloc = Allocator())
 			: _alloc(alloc), _data(NULL), _size(count), _capacity(count)
 		{
 			_data = _alloc.allocate(count);
@@ -45,8 +45,8 @@ namespace ft
 		}
 
 		// Constructs the container with the contents of the range [first, last].
-		template < typename InputIt >
-		vector( InputIt first, InputIt last, const Allocator &alloc = Allocator() )
+		template <typename InputIt>
+		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator())
 			: _alloc(alloc), _data(NULL)
 		{
 			_size = std::distance(first, last);
@@ -75,27 +75,26 @@ namespace ft
 		// ***
 		// Element access
 		// ***
-
-		reference at( size_type pos )
+		reference at(size_type pos)
 		{
 			if (!(pos < _size))
 				throw std::exception();
 			return _data[pos];
 		}
 
-		const_reference at( size_type pos ) const
+		const_reference at(size_type pos) const
 		{
 			if (!(pos < _size))
 				throw std::exception();
 			return _data[pos];
 		}
 
-		reference operator[]( size_type pos )
+		reference operator[](size_type pos)
 		{
 			return _data[pos];
 		}
 
-		const_reference operator[]( size_type pos ) const
+		const_reference operator[](size_type pos) const
 		{
 			return _data[pos];
 		}
@@ -120,12 +119,12 @@ namespace ft
 			return *_data[_size - 1];
 		}
 
-		T* data()
+		T *data()
 		{
 			return _data;
 		}
 
-		const T* data() const
+		const T *data() const
 		{
 			return _data;
 		}
@@ -133,7 +132,6 @@ namespace ft
 		// ***
 		// Capacity
 		// ***
-
 		bool empty() const
 		{
 			return _size == 0;
@@ -149,7 +147,7 @@ namespace ft
 			return _alloc.max_size();
 		}
 
-		void reserve( size_type new_cap )
+		void reserve(size_type new_cap)
 		{
 			pointer tmp;
 
@@ -197,11 +195,13 @@ namespace ft
 			_size = 0;
 		}
 
-		void push_back( const T& value )
+		void push_back(const T &value)
 		{
+			int new_capacity;
+
 			if (_size == _capacity)
 			{
-				int new_capacity = (_size == 0) ? 1 : _size * 2;
+				new_capacity = (_size == 0) ? 1 : _size * 2;
 				this->reserve(new_capacity);
 			}
 			_alloc.construct(_data + _size, value);

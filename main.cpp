@@ -13,19 +13,10 @@ public:
 
 int main()
 {
-	ft::vector<std::string> v;
-	v.push_back("Zero");
-	v.push_back("One");
-	v.push_back("Two");
-	v.push_back("Three");
-	v.push_back("Four");
-	v.push_back("Five");
-	std::cout << v.at(3) << std::endl;
-	std::cout << v.front() << std::endl;
-	std::cout << v.back() << std::endl;
-	std::cout << v[3] << std::endl;
-	std::cout << v[5] << std::endl;
-	v.clear();	
+	std::vector<int> v;
+	std::cout << v.max_size() << std::endl;
+	v.pop_back();
+	std::cout << v.size() << std::endl;
+	v.clear();
 	return 0;
 }
-
